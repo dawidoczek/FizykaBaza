@@ -1,0 +1,1382 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trenażer Egzaminacyjny: Fizyka</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- MathJax for rendering equations -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #475569;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans transition-colors duration-200 min-h-screen flex flex-col">
+
+    <!-- Top Navigation Header -->
+    <header class="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 sticky top-0 z-40 shadow-sm transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="p-2 bg-blue-600 rounded-lg text-white">
+                    <!-- Network Icon -->
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold tracking-tight">Trenażer Fizyka</h1>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Kompleksowa Baza Pytań Egzaminacyjnych</p>
+                </div>
+            </div>
+
+            <!-- Quick Stats & Theme Controls -->
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" class="p-2 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors">
+                    <!-- Moon Icon -->
+                    <svg id="theme-moon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                    </svg>
+                    <!-- Sun Icon -->
+                    <svg id="theme-sun" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464l-.707-.707a1 1 0 00-1.414 1.414l.707.707a1 1 0 001.414-1.414zm2.12 10.607a1 1 0 010-1.414l.706-.707a1 1 0 111.414 1.414l-.707.707a1 1 0 01-1.414 0zM4 11a1 1 0 100-2H3a1 1 0 100 2h1z" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full flex flex-col md:flex-row gap-8">
+        
+        <!-- Sidebar Navigation Controls -->
+        <aside class="w-full md:w-64 shrink-0 space-y-4">
+            <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm transition-colors">
+                <p class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-3">Tryby Pracy</p>
+                <nav class="space-y-1">
+                    <button id="nav-dashboard" class="w-full flex items-center space-x-3 px-3 py-2.5 text-sm font-medium rounded-xl transition-all bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4zM14 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2v-4z"></path>
+                        </svg>
+                        <span>Panel główny</span>
+                    </button>
+                    <button id="nav-study" class="w-full flex items-center space-x-3 px-3 py-2.5 text-sm font-medium rounded-xl transition-all text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700/50">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                        <span>Tryb Nauki</span>
+                    </button>
+                    <button id="nav-exam" class="w-full flex items-center space-x-3 px-3 py-2.5 text-sm font-medium rounded-xl transition-all text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700/50">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span>Tryb Egzaminu</span>
+                    </button>
+                    <button id="nav-browse" class="w-full flex items-center space-x-3 px-3 py-2.5 text-sm font-medium rounded-xl transition-all text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700/50">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                        <span>Przeglądaj Bazę</span>
+                    </button>
+                    <button id="nav-starred" class="w-full flex items-center space-x-3 px-3 py-2.5 text-sm font-medium rounded-xl transition-all text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700/50">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                        </svg>
+                        <span>Ulubione pytania</span>
+                    </button>
+                </nav>
+            </div>
+
+            <!-- Global Stats Card -->
+            <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm transition-colors space-y-3">
+                <p class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Twoje Postępy</p>
+                <div class="space-y-2 text-sm">
+                    <div class="flex justify-between">
+                        <span class="text-slate-500 dark:text-slate-400">Rozwiązane:</span>
+                        <span id="stat-solved" class="font-semibold">0 / 201</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-slate-500 dark:text-slate-400">Skuteczność:</span>
+                        <span id="stat-accuracy" class="font-semibold text-green-600 dark:text-green-400">0%</span>
+                    </div>
+                    <div class="w-full bg-slate-100 dark:bg-slate-700 rounded-full h-2">
+                        <div id="stat-progress-bar" class="bg-blue-600 h-2 rounded-full" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Workspace Area -->
+        <main class="flex-1 space-y-6">
+            
+            <!-- SECTION 1: DASHBOARD -->
+            <section id="sec-dashboard" class="space-y-6">
+                <div class="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-3xl p-6 sm:p-8 text-white shadow-lg relative overflow-hidden">
+                    <div class="relative z-10 max-w-lg space-y-4">
+                        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Test Fizyka zamkniete</h2>
+                        <p class="text-blue-100 text-sm sm:text-base leading-relaxed">
+                            Sorze doktorze Pikula, oby ta baza siadła <br>
+                            oryginalna aplikacja <a href="https://github.com/fvjsdkjfsjdbkfvwerewrewr/testtt" class="text-red-300 hover:text-red-400 underline">tutaj</a>
+
+                        </p>
+                        <div class="flex flex-wrap gap-3 pt-2">
+                            <button onclick="switchTab('study')" class="bg-white text-blue-600 hover:bg-blue-50 font-semibold px-5 py-2.5 rounded-xl text-sm transition shadow-sm">Zacznij naukę</button>
+                            <button onclick="switchTab('exam')" class="bg-blue-500/30 hover:bg-blue-500/40 text-white font-semibold px-5 py-2.5 rounded-xl text-sm border border-blue-400/30 transition">Symuluj egzamin</button>
+                        </div>
+                    </div>
+                    <!-- Absolute Decorative Wireframe Icon -->
+                    <div class="absolute right-0 bottom-0 opacity-10 transform translate-x-10 translate-y-10 pointer-events-none">
+                        <svg class="w-80 h-80" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Grid Options -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-3">
+                        <div class="w-10 h-10 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-xl flex items-center justify-center">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-lg">Tryb Nauki</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 leading-normal">
+                            Systematycznie odpowiadaj na pytania jedno po drugim z natychmiastowym sprawdzaniem poprawności oraz czytaniem komentarzy wyjaśniających.
+                        </p>
+                        <button onclick="switchTab('study')" class="text-blue-600 hover:text-blue-700 text-sm font-semibold flex items-center space-x-1">
+                            <span>Przejdź do nauki</span>
+                            <span>&rarr;</span>
+                        </button>
+                    </div>
+
+                    <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-3">
+                        <div class="w-10 h-10 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-xl flex items-center justify-center">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-lg">Tryb Egzaminu</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 leading-normal">
+                            Sprawdź swoją wiedzę pod presją czasu. Wylosuj określoną liczbę pytań i przejdź pełny test z podsumowaniem i oceną na koniec.
+                        </p>
+                        <button onclick="switchTab('exam')" class="text-blue-600 hover:text-blue-700 text-sm font-semibold flex items-center space-x-1">
+                            <span>Konfiguruj test</span>
+                            <span>&rarr;</span>
+                        </button>
+                    </div>
+
+                    <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-3">
+                        <div class="w-10 h-10 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-xl flex items-center justify-center">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-lg">Zarządzanie Danymi</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 leading-normal">
+                            Możesz w każdej chwili wyczyścić zapisaną historię postępów i statystyki błędów, aby rozpocząć proces powtórek całkowicie od nowa.
+                        </p>
+                        <button onclick="resetStats()" class="text-red-500 hover:text-red-600 text-sm font-semibold flex items-center space-x-1">
+                            <span>Wyczyść postępy</span>
+                            <span>&rarr;</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 2: STUDY MODE -->
+            <section id="sec-study" class="hidden space-y-6">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-xl font-bold">Interaktywny Tryb Nauki</h2>
+                    <div class="flex items-center space-x-3">
+                        <label class="flex items-center space-x-2">
+                            <span class="text-xs text-slate-400">Idź do pytania:</span>
+                            <input type="number" id="study-go-to" min="1" max="201" step="0.1" class="w-16 px-2 py-1 text-xs border rounded-lg bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700" onchange="jumpToStudyQuestion(this.value)">
+                        </label>
+                        <label class="flex items-center space-x-2 text-xs text-slate-400">
+                            <input type="checkbox" id="study-shuffle" onchange="toggleStudyShuffle(this.checked)" />
+                            <span>Losuj kolejność</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Main Quiz Card -->
+                <div id="study-card" class="bg-white dark:bg-slate-800 p-6 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-6 transition-all">
+                    <!-- Loaded dynamically -->
+                </div>
+            </section>
+
+            <!-- SECTION 3: EXAM MODE -->
+            <section id="sec-exam" class="hidden space-y-6">
+                <!-- Exam setup interface -->
+                <div id="exam-setup" class="bg-white dark:bg-slate-800 p-6 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-6">
+                    <h2 class="text-xl font-bold">Ustawienia Egzaminu próbnego</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium text-slate-600 dark:text-slate-400">Liczba pytań w teście:</label>
+                            <select id="exam-count" class="w-full p-2.5 border rounded-xl bg-white dark:bg-slate-700 border-slate-200 dark:border-slate-600">
+                                <option value="10">10 pytań</option>
+                                <option value="20">20 pytań</option>
+                                <option value="50">50 pytań</option>
+                                <option value="all">Wszystkie pytania bazy</option>
+                            </select>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium text-slate-600 dark:text-slate-400">Limit czasu na cały egzamin:</label>
+                            <select id="exam-time" class="w-full p-2.5 border rounded-xl bg-white dark:bg-slate-700 border-slate-200 dark:border-slate-600">
+                                <option value="5">5 minut</option>
+                                <option value="15">15 minut</option>
+                                <option value="30" selected>30 minut</option>
+                                <option value="60">60 minut</option>
+                                <option value="no-limit">Brak limitu czasu</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button onclick="startExam()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-xl transition duration-150 shadow-md">
+                        Rozpocznij egzamin
+                    </button>
+                </div>
+
+                <!-- Live Exam Active Window -->
+                <div id="exam-active" class="hidden space-y-6">
+                    <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 flex items-center justify-between shadow-sm">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-sm font-semibold bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 px-3 py-1 rounded-full" id="exam-progress-badge">Pytanie 1 / ${questionBank.length}</span>
+                        </div>
+                        <div class="flex items-center space-x-2 text-red-600 dark:text-red-400 font-mono font-bold" id="exam-timer-wrapper">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span id="exam-timer">30:00</span>
+                        </div>
+                    </div>
+
+                    <div id="exam-question-card" class="bg-white dark:bg-slate-800 p-6 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-6">
+                        <!-- Loaded dynamically during exam -->
+                    </div>
+
+                    <div class="flex justify-between items-center">
+                        <button onclick="prevExamQuestion()" id="exam-prev-btn" class="bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold px-5 py-2.5 rounded-xl text-sm transition">Poprzednie</button>
+                        <button onclick="nextExamQuestion()" id="exam-next-btn" class="bg-blue-600 text-white font-semibold px-5 py-2.5 rounded-xl text-sm transition">Następne / Zakończ</button>
+                    </div>
+                </div>
+
+                <!-- Exam Finished / Results Screen -->
+                <div id="exam-results" class="hidden bg-white dark:bg-slate-800 p-6 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-6">
+                    <div class="text-center py-6 space-y-3 border-b border-slate-100 dark:border-slate-700">
+                        <div class="inline-flex p-4 rounded-full" id="exam-result-icon-bg">
+                            <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" id="exam-result-icon">
+                                <!-- Check or X dynamically loaded -->
+                            </svg>
+                        </div>
+                        <h2 class="text-2xl font-extrabold" id="exam-result-title">Gratulacje! Zdałeś!</h2>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm" id="exam-result-subtitle">Uzyskana ocena odzwierciedla Twoją znajomość bazy.</p>
+                    </div>
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                        <div class="p-4 bg-slate-50 dark:bg-slate-700/50 rounded-2xl">
+                            <p class="text-xs text-slate-400 uppercase font-semibold">Twój wynik</p>
+                            <p class="text-2xl font-bold text-blue-600 dark:text-blue-400 mt-1" id="exam-score">85%</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 dark:bg-slate-700/50 rounded-2xl">
+                            <p class="text-xs text-slate-400 uppercase font-semibold">Poprawne odp.</p>
+                            <p class="text-2xl font-bold mt-1" id="exam-correct-count">17 / 20</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 dark:bg-slate-700/50 rounded-2xl">
+                            <p class="text-xs text-slate-400 uppercase font-semibold">Czas rozwiązania</p>
+                            <p class="text-2xl font-bold mt-1" id="exam-time-elapsed">14:22</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 dark:bg-slate-700/50 rounded-2xl">
+                            <p class="text-xs text-slate-400 uppercase font-semibold">Ocena końcowa</p>
+                            <p class="text-2xl font-bold mt-1 text-green-600 dark:text-green-400" id="exam-final-grade">Pozytywna</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h3 class="font-bold text-lg border-b pb-2">Przegląd odpowiedzi</h3>
+                        <div id="exam-results-review" class="space-y-4 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
+                            <!-- Dynamic evaluation list -->
+                        </div>
+                    </div>
+
+                    <button onclick="exitExam()" class="w-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-800 dark:text-white font-semibold py-3 px-6 rounded-xl transition duration-150">
+                        Wróć do wyboru trybu
+                    </button>
+                </div>
+            </section>
+
+            <!-- SECTION 4: BROWSE ALL QUESTIONS -->
+            <section id="sec-browse" class="hidden space-y-6">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <h2 class="text-xl font-bold">Wszystkie pytania bazy (201 pytań)</h2>
+                    <div class="relative flex-1 max-w-md">
+                        <input type="text" id="search-input" onkeyup="filterQuestions()" placeholder="Wyszukaj zagadnienie np. RIP, DNS..." class="w-full pl-10 pr-4 py-2.5 border rounded-xl bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <span class="absolute left-3.5 top-3 text-slate-400">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+
+                <div id="browse-list" class="space-y-4 max-h-[650px] overflow-y-auto pr-2 custom-scrollbar">
+                    <!-- Dynamic database listing -->
+                </div>
+            </section>
+
+            <!-- SECTION 5: STARRED / FAVORITE -->
+            <section id="sec-starred" class="hidden space-y-6">
+                <h2 class="text-xl font-bold">Twoje Ulubione Pytania</h2>
+                <div id="starred-list" class="space-y-4">
+                    <!-- Loaded dynamically -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Persistent Global Notification System -->
+    <div id="toast" class="fixed bottom-5 right-5 bg-slate-900 text-white px-4 py-2.5 rounded-xl shadow-lg transition-transform duration-300 transform translate-y-20 flex items-center space-x-2 text-sm z-50">
+        <span id="toast-msg">Pytanie dodane do ulubionych</span>
+    </div>
+
+    <!-- Javascript Logical Hub -->
+    <script>
+    const questionBank = [
+  { "id": 1, "type": "choice", "q": "Z podanych niżej materiałów wybierz przewodniki prądu elektrycznego (wiele odpowiedzi):", "a": "Cu", "b": "Al", "c": "Fe", "d": "He", "e": "Si", "f": "Ne", "g": "Ge", "h": "szkło", "i": "stal", "j": "plastik", "k": "guma", "m": "Zn", "n": "K", "o": "Na", "p": "mosiądz", "correct": "a,b,c,i,m,n,o,p", "exp": "Przewodnikami prądu elektrycznego są metale oraz ich stopy (m.in. miedź, glin, żelazo, stal, cynk, potas, sód, mosiądz)." },
+  { "id": 2, "type": "choice", "q": "Prąd wyindukowany w wyniku zjawiska indukcji elektromagnetycznej przeciwdziała zmianie strumienia magnetycznego, która go wywołuje. Zdanie to wyraża regułę:", "a": "Ohma", "b": "Lenza", "c": "Lorenza", "d": "Coulomba", "e": "Faradaya", "f": "Tesli", "g": "Henra", "h": "Hertza", "i": "Oersteda", "k": "Ampera", "correct": "b", "exp": "Reguła Lenza mówi, że prąd indukcyjny ma taki kierunek, aby własnym polem magnetycznym przeciwdziałać przyczynie, która go wywołała." },
+  { "id": 3, "type": "choice", "q": "Barwa dźwięku słyszanego przez ucho człowieka jest związana z:", "a": "amplitudą fali akustycznej", "b": "częstotliwością fali akustycznej", "c": "fazą fali akustycznej", "d": "widmem częstotliwościowym fali", "correct": "d", "exp": "Barwa dźwięku zależy od jego widma częstotliwościowego (czyli zawartości i natężenia tonów harmonicznych)." },
+  { "id": 4, "type": "choice", "q": "Z podanych poniżej materiałów wybierz te, które są ferromagnetykami w temp. pokojowej (wiele odpowiedzi):", "a": "Cu", "b": "Al", "c": "Fe", "d": "Au", "e": "Zn", "f": "Si", "g": "K", "h": "Na", "i": "Ge", "j": "szkło", "k": "stal", "m": "mosiądz", "correct": "c,k", "exp": "Do ferromagnetyków w temperaturze pokojowej należą m.in. żelazo (Fe), kobalt, nikiel oraz ich stopy (np. stal)." },
+  { "id": 5, "type": "choice", "q": "Która z poniższych fal nie jest falą elektromagnetyczną: (wiele odpowiedzi)", "a": "promieniowanie alfa", "b": "promieniowanie gamma", "c": "promieniowanie beta", "d": "promieniowanie X", "e": "światło", "f": "dźwięk", "g": "podczerwień", "h": "fala radiowa", "i": "mikrofala", "correct": "a,c,f", "exp": "Promieniowanie alfa to strumień jąder helu, promieniowanie beta to strumień elektronów/pozytonów, a dźwięk to fala mechaniczna." },
+  { "id": 6, "type": "choice", "q": "Ciepło ze Słońca na Ziemię dociera głównie dzięki:", "a": "konwekcji", "b": "promieniowaniu UV", "c": "mikrofalom", "d": "promieniowaniu podczerwonemu", "e": "przewodnictwu cieplnemu", "correct": "d", "exp": "Ciepło ze Słońca przekazywane jest przez kosmiczną próżnię w postaci promieniowania, z czego odczuwalne efekty cieplne wywołuje głównie promieniowanie podczerwone." },
+  { "id": 7, "type": "choice", "q": "Nieskończenie długi prostoliniowy przewodnik, w którym płynie stały prąd elektryczny 1A wytwarza w odległości d=10cm pole magnetyczne B=4mT. Jakie pole wytwarza w odległości 20cm?", "a": "0.25mT", "b": "0.5mT", "c": "1mT", "d": "1.25mT", "e": "1.5mT", "f": "1.75mT", "g": "2mT", "h": "3mT", "i": "4mT", "correct": "g", "exp": "Indukcja pola magnetycznego długiego prostoliniowego przewodnika jest odwrotnie proporcjonalna do odległości od niego. Przy dwukrotnym wzroście odległości pole maleje dwukrotnie (do 2mT)." },
+  { "id": 8, "type": "choice", "q": "Fala dźwiękowa jest falą (wiele odpowiedzi):", "a": "poprzeczną", "b": "podłużną", "c": "falą elektromagnetyczną", "d": "falą mechaniczną", "e": "falą grawitacyjną", "f": "falą materii", "g": "żadne z powyższych", "correct": "b,d", "exp": "Dźwięk to podłużna fala mechaniczna polegająca na cyklicznym zagęszczaniu i rozrzedzaniu ośrodka sprężystego." },
+  { "id": 9, "type": "choice", "q": "Fala biegnąca na napiętej linie jest falą (wiele odpowiedzi):", "a": "poprzeczną", "b": "podłużną", "c": "falą elektromagnetyczną", "d": "falą mechaniczną", "e": "falą grawitacyjną", "f": "falą materii", "g": "elektromechaniczną", "correct": "a,d", "exp": "Zaburzenia naprężonej liny to przykład poprzecznej fali mechanicznej (drgania są prostopadłe do kierunku propagacji)." },
+  { "id": 10, "type": "choice", "q": "Fala radiowa jest falą (wiele odpowiedzi):", "a": "poprzeczną", "b": "podłużną", "c": "falą elektromagnetyczną", "d": "falą mechaniczną", "e": "falą grawitacyjną", "f": "falą materii", "correct": "a,c", "exp": "Każda fala elektromagnetyczna, w tym fala radiowa, jest falą poprzeczną." },
+  { "id": 11, "type": "choice", "q": "Kiedy obok obserwatora przejeżdża karetka pogotowia z włączonym sygnałem obserwator słyszy dźwięk syreny wyższy gdy pojazd się zbliża a następnie dźwięk niższy gdy pojazd oddala się. Efekt ten nazywa się:", "a": "efekt Dopplera", "b": "efekt Lorentza", "c": "efekt elektroakustyczny", "d": "efekt magneto-akustyczny", "e": "efekt Coulomba", "f": "efekt motyla", "g": "efekt Faradaya", "correct": "a", "exp": "Zjawisko zmiany rejestrowanej częstotliwości fali ze względu na względny ruch obserwatora i źródła to efekt Dopplera." },
+  { "id": 12, "type": "choice", "q": "Indukcja elektromagnetyczna to zjawisko, dzięki któremu działa:", "a": "silnik elektryczny", "b": "elektromagnes", "c": "prądnica", "d": "tranzystor", "e": "dioda LED", "f": "fotodioda", "g": "fototranzystor", "h": "przekaźnik", "correct": "c", "exp": "Prądnica zamienia energię mechaniczną na elektryczną na drodze indukowania napięcia przy zmianie strumienia magnetycznego obejmowanego przez cewkę." },
+  { "id": 13, "type": "choice", "q": "Światło słoneczne jest światłem:", "a": "monochromatycznym", "b": "spolaryzowanym", "c": "polichromatycznym", "d": "żadne z powyższych", "correct": "c", "exp": "Światło docierające do nas ze Słońca jest światłem białym – ciągłym widmem różnych długości fal, czyli światłem polichromatycznym." },
+  { "id": 14, "type": "choice", "q": "W wyniku nałożenia na siebie dwóch identycznych sinusoidalnych fal przesuniętych względem siebie o kąt fazowy pi rad biegnących w tych samych kierunkach dojdzie do:", "a": "interferencji konstruktywnej", "b": "interferencji destruktywnej", "c": "dyfrakcji", "d": "polaryzacji", "e": "żadne z powyższych", "correct": "b", "exp": "Fale przesunięte w fazie o nieparzystą wielokrotność liczby pi (np. pół okresu) znoszą się nawzajem, co nazywamy interferencją destruktywną." },
+  { "id": 15, "type": "choice", "q": "Prawdą jest, że promieniowanie gamma:", "a": "jest falą elektromagnetyczną", "b": "jest falą mechaniczną", "c": "jest falą grawitacyjną", "d": "żadna z odpowiedzi nie jest poprawna", "correct": "a", "exp": "Promieniowanie gamma to twarde (najkrótsze, niezwykle energetyczne) promieniowanie elektromagnetyczne emitowane z jąder atomowych." },
+  { "id": 16, "type": "choice", "q": "Dwa ładunki elektryczne umieszczone w odległości r=1m oddziałują ze sobą siłą F. Ładunki zbliżono na odległość 25cm. Siła ich oddziaływania wynosi:", "a": "2N", "b": "3N", "c": "4N", "d": "8N", "e": "9N", "f": "16F", "g": "27N", "h": "32N", "i": "64N", "j": "żadna z odpowiedzi nie jest poprawna", "correct": "f", "exp": "Zgodnie z prawem Coulomba, siła maleje z kwadratem odległości. Zbliżenie ładunków z 1m do 0.25m (4-krotne zmniejszenie odległości) skutkuje 16-krotnym wzrostem siły (4^2 = 16)." },
+  { "id": 17, "type": "choice", "q": "Dwa ładunki elektryczne umieszczone w próżni w odległości r=1m oddziałują ze sobą siłą stałą F=9N. Jeżeli ładunki te zanurzymy w cieczy o stałej dielektrycznej er = (36 lub 81) to siła ich oddziaływania:", "a": "wzrośnie 3x", "b": "zmaleje 3x", "c": "wzrośnie 6x", "d": "zmaleje 6x", "e": "wzrośnie 9x", "f": "zmaleje 9x", "g": "wzrośnie 36x", "h": "zmaleje 36x (jeżeli er = 36)", "i": "wzrośnie 81x", "j": "zmaleje 81x (jeżeli er = 81)", "k": "nie zmieni się", "correct": "h,j", "exp": "W ośrodku dielektrycznym o stałej dielektrycznej \u03B5r siła kulombowska jest \u03B5r-krotnie mniejsza niż w próżni na tej samej odległości." },
+  { "id": 18, "type": "choice", "q": "Jednostką natężenia pola elektrycznego jest:", "a": "Tesla", "b": "Coulomb", "c": "Farad", "d": "Volt/m", "e": "Amper", "f": "Henr", "g": "Hertz", "h": "Siemens", "i": "Weber", "correct": "d", "exp": "Natężenie pola elektrycznego E określamy w woltach na metr (V/m) lub, równoważnie, niutonach na kulomb (N/C)." },
+  { "id": 19, "type": "choice", "q": "W jednorodnym polu magnetycznym o indukcji B=1T wpada cząstka poruszająca się z prędkością V=10^4 m/s pod kątem a względem wektora B. Zakładając, że obszar tego pola jest nieskończenie duży można stwierdzić, że torem ruchu tej cząstki będzie:", "a": "prosta (jeżeli a=0 st. lub 180 st.)", "b": "łuk", "c": "parabola", "d": "okrąg (jeżeli a = 90 st.)", "e": "hiperbola", "f": "cykloida", "g": "tor śrubowy (jeżeli a z przedziału otwartego (0, 90))", "h": "sinusoida", "correct": "a,d,g", "exp": "Siła Lorentza wymusza tor w postaci prostej przy braku jej działania (0 lub 180 st), okręgu przy kącie prostym oraz linii śrubowej przy pozostałych kątach." },
+  { "id": 20, "type": "choice", "q": "W jednorodnym polu magnetycznym o indukcji B = 1T umieszczono prostoliniowy odcinek przewodnika o długości 10cm, w którym płynie prąd elektryczny o natężeniu I=50A. Siła działająca na ten przewodnik ma wartość:", "a": "0N (gdy równolegle, a=0 st.)", "b": "1N", "c": "2N", "d": "2.5N", "e": "4N", "f": "5N (gdy prostopadle, a=90 st.)", "g": "6N", "h": "7.5N", "i": "25N", "j": "50N", "correct": "a,f", "exp": "Siła elektrodynamiczna F = B*I*L*sin(a). Maksymalna wartość dla 90 stopni wynosi 1*50*0.1 = 5N, zaś dla 0 stopni wynosi 0N." },
+  { "id": 21, "type": "choice", "q": "Strumień elektronów (e=1.6*10^-19 C) poruszający się z prędkością V = 10^4 m/s wpada w obszar jednorodnego pola elektrycznego o natężeniu E = 1000 V/m na skutek czego zostaje on odchylony. Siła działająca na pojedynczy elektron wynosi:", "a": "1.6 * 10^-16 N", "b": "1.6 * 10^-15 N", "c": "1.6 * 10^-22 N", "d": "1.6 * 10^-23 N", "e": "0N", "f": "żadne z powyższych", "correct": "a", "exp": "Siła działająca w polu elektrycznym zależy od jego natężenia oraz ładunku: F = qE = 1.6*10^-19 C * 1000 V/m = 1.6*10^-16 N." },
+  { "id": 22, "type": "choice", "q": "Pewien kondensator płaski (powietrzny) ma pojemność C=10uF. Między jego okładki wsunięto dielektryk o względnej przenikalności elektr. er tak że szczelnie wypełnił on przestrzeń między okładkami. Jak zmieni się pojemność kondensatora?", "a": "wzrośnie 2x", "b": "zmaleje 2x", "c": "wzrośnie 4x (dla er=4)", "d": "zmaleje 4x", "e": "wzrośnie 5x", "f": "zmaleje 5x", "g": "wzrośnie 10x", "h": "zmaleje 10x", "i": "wzrośnie 16x", "j": "zmaleje 16x", "k": "wzrośnie 100x (dla er=100)", "l": "zmaleje 100x", "m": "nie zmieni się", "correct": "c,k", "exp": "Pojemność z dielektrykiem rośnie proporcjonalnie do względnej przenikalności dielektrycznej wsuwanej substancji (C = er * C0)." },
+  { "id": 23, "type": "choice", "q": "Pojedynczy elektron można zobaczyć przy użyciu:", "a": "mikroskopu optycznego", "b": "mikroskopu elektronowego", "c": "komory pęcherzykowej", "d": "komory próżniowej", "correct": "c", "exp": "Fizycznego kształtu elektronu nie możemy zaobserwować, natomiast jego unikalny ślad/tor ruchu po jonizacji może być uwidoczniony w detektorach np. w komorze pęcherzykowej." },
+  { "id": 24, "type": "choice", "q": "Dwa protony przyciągają się ze sobą za pośrednictwem sił jądrowych (oddziaływanie jądrowe silne). Jest to:", "a": "Prawda", "b": "Fałsz", "correct": "a", "exp": "Na odległościach rzędu femtometrów między nukleonami występuje oddziaływanie jądrowe silne, które dominuje nad kulombowskim odpychaniem i zapewnia stabilność jąder." },
+  { "id": 25, "type": "choice", "q": "Siła elektromotoryczna wyindukowana w obwodzie jest równa szybkości zmian strumienia magnetycznego przenikającego przez ten obwód. Sformułowanie to wyraża prawo:", "a": "Ohma", "b": "Lenza", "c": "Lorentza", "d": "Coulomba", "e": "Faradaya", "f": "Tesli", "g": "Henra", "h": "Hertza", "i": "Oersteda", "k": "Ampera", "correct": "e", "exp": "Zjawisko indukcji wywołane zmianami strumienia zdefiniował M. Faraday (tzw. ogólne prawo indukcji Faradaya)." },
+  { "id": 26, "type": "choice", "q": "Wysokość dźwięku słyszanego przez ucho człowieka jest związana z:", "a": "amplitudą fali akustycznej", "b": "częstotliwością fali akustycznej", "c": "fazą fali akustycznej", "d": "wszystkie odpowiedzi są poprawne", "correct": "b", "exp": "Psychofizjologiczna cecha dźwięku, jaką jest jego wysokość, determinowana jest fizycznie głównie przez częstotliwość fali (im wyższa częstotliwość, tym wyższy dźwięk)." },
+  { "id": 27, "type": "choice", "q": "Prostoliniowy przewodnik w którym płynie stały prąd elektryczny wytwarza w swoim otoczeniu pole magnetyczne:", "a": "jednorodne", "b": "dipolowe", "c": "wirowe", "d": "jednorodne", "e": "żadne z powyższych", "correct": "c", "exp": "Pole to jest niejednorodne i wirowe (bezźródłowe), a jego linie pola przyjmują kształt okręgów współśrodkowych." },
+  { "id": 28, "type": "choice", "q": "W dwóch równoległych prostoliniowych przewodnikach płyną przeciwne prądy elektryczne. Przewodniki te:", "a": "przyciągają się", "b": "odpychają się", "c": "nie oddziałują", "d": "rodzaj oddziaływania jest uzależniony od odległości", "correct": "b", "exp": "Dwa długie, równoległe przewodniki z przeciwnie zorientowanymi prądami odpychają się od siebie z siłą opisaną prawem Ampere'a." },
+  { "id": 29, "type": "choice", "q": "Pole magnetyczne magnesu trwałego jest polem:", "a": "jednorodnym", "b": "dipolowym", "c": "wirowym", "d": "harmonicznym", "correct": "c", "exp": "Wszystkie zjawiska pola magnetycznego w przyrodzie wynikają z ruchu ładunków. Linie pola magnetycznego są zamknięte – z definicji pole to jest wirowe i bezźródłowe." },
+  { "id": 30, "type": "choice", "q": "Światło lasera jest światłem:", "a": "monochromatycznym", "b": "polichromatycznym", "correct": "a", "exp": "Wymuszona emisja fotonów w laserze skutkuje wytworzeniem fali o ściśle jednej częstotliwości – świetle spójnym i monochromatycznym." },
+  { "id": 31, "type": "choice", "q": "Prawdą jest, że podczerwień:", "a": "jest falą elektromagnetyczną", "b": "jest falą poprzeczną", "c": "przenosi energię", "d": "wszystkie odpowiedzi są poprawne", "correct": "d", "exp": "Promieniowanie IR jest przejawem fal elektromagnetycznych – a te z natury rozchodzą się jako poprzeczne, swobodnie w przestrzeni przekazując pędy i energię (np. promienistą)." },
+  { "id": 32, "type": "choice", "q": "Jednostką potencjału elektrycznego jest:", "a": "Volt/m", "b": "Coulomb", "c": "Farad", "d": "Volt", "e": "Amper/m", "f": "Henr", "g": "Hertz", "h": "Siemens", "i": "Weber", "j": "Volt/Coulomb", "k": "Volt-Coulomb", "l": "Volt metr", "correct": "d", "exp": "Potencjał określany jest jako iloraz pracy wykonanej na przesunięcie ładunku do jego wielkości, stąd z definicji [J/C] jest Woltem (V)." },
+  { "id": 33, "type": "choice", "q": "Czy elektron można rozpędzić do prędkości równej prędkości światła w próżni?", "a": "nie bo wymagałoby to nieskończonej ilości energii", "b": "tak ale niemożliwe jest przekroczenie tej prędkości", "correct": "a", "exp": "Zgodnie z dynamiką szczegółowej teorii względności (STW), cząstki obdarzone masą spoczynkową, by osiągnąć c, potrzebowałyby dostarczenia absolutnie nieskończonej dawki energii." },
+  { "id": 34, "type": "choice", "q": "Nie istnieją monopole magnetyczne. Jest to:", "a": "Prawda", "b": "Fałsz", "correct": "a", "exp": "To jeden z fundamentalnych wniosków płynących wprost z równań Maxwella (prawo Gaussa dla pola magnetycznego), potwierdzany przez wszystkie dotychczasowe obserwacje." },
+  { "id": 35, "type": "choice", "q": "Membrana głośnika wykonuje drgania harmoniczne z okresem T=0,1 s. Można stwierdzić, że częstotliwość drgań membrany wynosi:", "a": "0.01 Hz", "b": "0.1 Hz", "c": "1 Hz", "d": "10 Hz", "e": "100 Hz", "f": "1000 Hz", "correct": "d", "exp": "Częstotliwość stanowi odwrotność okresu; 1 / 0.1 s = 10 Hz." },
+  { "id": 36, "type": "choice", "q": "Membrana głośnika wykonuje drgania harmoniczne z okresem T=0.01s. Czy dźwięk przez nią emitowany będzie słyszalny dla przeciętnego człowieka?", "a": "TAK", "b": "NIE", "correct": "a", "exp": "f = 1 / 0.01 s = 100 Hz. Częstotliwość ta leży swobodnie we właściwym spektrum wrażliwości ludzkiego zmysłu słuchu (zakres około 20Hz – 20 000Hz)." },
+  { "id": 38.1, "type": "choice", "q": "Pewne wahadło sprężynowe wykonuje drgania zgodnie z równaniem x(t) = 0,1 sin(3pi t + pi/2). Częstotliwość f drgań tego wahadła wynosi:", "a": "f=3pi Hz", "b": "f=1.5pi Hz", "c": "f=1.5Hz", "d": "f=0.5pi Hz", "e": "f=0.5Hz", "f": "żadne z powyższych", "correct": "c", "exp": "Wielkość przed t to częstość kołowa w (w=3pi). Ponieważ w=2pi*f, częstotliwość f = 3pi / 2pi = 1.5 Hz." },
+  { "id": 38.2, "type": "choice", "q": "Częstość (pulsacja) drgań tego wahadła wynosi:", "a": "w=3pi rad/s", "b": "w=3 rad/s", "c": "w=1.5 Hz", "d": "w=0.5pi rad/s", "e": "w=0.5 rad/s", "f": "żadne z powyższych", "correct": "a", "exp": "Pulsację ω można bez trudu wyciągnąć ze wzoru podstawowego, stoi ona zawsze w bezpośrednim towarzystwie zmiennej czasu t – stąd wynosi 3pi rad/s." },
+  { "id": 38.3, "type": "choice", "q": "W chwili czasu t=0 wahadło znajdowało się w położeniu:", "a": "równowagi", "b": "max. wychylenia górnego", "c": "max. wychylenia dolnego", "d": "żadne z powyższych", "correct": "b", "exp": "Dla t=0 s, sinus przyjmuje wartość sin(pi/2) = 1. Funkcja wskazuje tym samym maksymalne, dodatnie natężenie (max. górne)." },
+  { "id": 38.4, "type": "choice", "q": "Okres drgań tego wahadła wynosi:", "a": "3/2 s", "b": "2/3 s", "c": "1/2 s", "d": "2 s", "e": "3 s", "f": "1/3 s", "correct": "b", "exp": "Okres rzadko wymaga zawiłych obliczeń – jest wprost odwrotnością uzyskanej częstotliwości f=1.5 Hz. Zatem T = 1/1.5 s = 2/3 s." },
+  { "id": 38.5, "type": "choice", "q": "Maksymalna prędkość V jaką osiąga wahadło wynosi:", "a": "V=pi/2 m/s", "b": "V=3pi m/s", "c": "V=0.1 m/s", "d": "V=0.3 m/s", "e": "V=0.3pi m/s", "f": "V=0.3pi^2 m/s", "g": "V=(0.3pi)^2 m/s", "correct": "e", "exp": "Z kinematyki ruchu harmonicznego Vmax = A*w. Mamy amplitudę A=0.1 m, pulsację w=3pi, więc Vmax = 0.3*pi m/s." },
+  { "id": 38.7, "type": "choice", "q": "W chwili czasu t=10.5s wahadło znajdzie się w położeniu:", "a": "równowagi", "b": "max. wychylenia górnego", "c": "max. wychylenia dolnego", "d": "żadne z powyższych", "correct": "a", "exp": "Obliczamy fazę dla 10.5s: 3*pi*10.5 + pi/2 = 31.5pi + 0.5pi = 32pi. Dla wielokrotności parzystych pi sinus daje wartość zero – jest to centralne położenie (równowaga)." },
+  { "id": 38.8, "type": "choice", "q": "W chwili czasu t=11s wahadło będzie poruszało się z prędkością:", "a": "V=0 m/s", "b": "V=0.94 m/s", "c": "V=1.88 m/s", "d": "V=2.96 m/s", "e": "V=0.94 m/s", "f": "V=0.89 m/s", "g": "żadna z podanych", "correct": "a", "exp": "Prędkość jest opisywana w czasie f. kosinus. Faza: 3pi*11+pi/2 = 33.5pi. Cos(33.5pi)=0, więc wahadło po 11 sekundach w tym zadanym cyklu spoczywa (znajduje się w punkcie zawrotu)." },
+  { "id": 39, "type": "choice", "q": "Która z wymienionych poniżej fal nie jest falą poprzeczną:", "a": "fala radiowa", "b": "mikrofala", "c": "promieniowanie gamma", "d": "światło", "e": "dźwięk", "f": "promieniowanie X", "correct": "e", "exp": "Dźwięk stanowi klasyczną, standardową iterację oscylacji mechanicznej podłużnej – drgania w nośniku odbywają się dokładnie w kierunku translacji uderzenia." },
+  { "id": 40, "type": "choice", "q": "Naciśnięcie klawisza 'A' pianina powoduje emisję tonu o częstotliwości 440 Hz. Fala, dzięki której usłyszymy ten dźwięk w powietrzu będzie miała długość około (prędkość dźwięku w powietrzu V=340m/s):", "a": "17mm", "b": "17cm", "c": "17m", "d": "77mm", "e": "77cm", "f": "77m", "g": "149m", "h": "149km", "correct": "e", "exp": "Z fundamentalnego związku długości z prędkością lambda = V / f => L = 340 / 440 = 0.772m co staje się adekwatne 77 cm." },
+  { "id": 41, "type": "choice", "q": "Odległość między okładki pewnego kondensatora płaskiego zmniejszono o połowę a przestrzeń między nimi szczelnie wypełniono dielektrykiem o względnej przenikalności elektrycznej er = 20. W związku z tym pojemność tego kondensatora wzrosła:", "a": "2 razy", "b": "10 razy", "c": "20 razy", "d": "40 razy", "e": "60 razy", "f": "80 razy", "g": "100 razy", "h": "200 razy", "i": "400 razy", "correct": "d", "exp": "Spadek dystansu okładek dwukrotnie sam z siebie pomnożył pojemność razy dwa, dodanie dielektryka zwiększa skokowo dodatkowo o mnożnik 20. Razem pojemność urośnie zatem stukrotnie? Nie, 2 * 20 = 40 razy." },
+  { "id": 42, "type": "choice", "q": "Pewien kondensator naładowano do napięcia U=1V w związku z czym zmagazynowano energię E1. Następnie naładowano go do napięcia U=10V w związku z czym zmagazynowano energię E2. Można powiedzieć, że:", "a": "E2=10 E1", "b": "E2=20 E1", "c": "E2=81 E1", "d": "E2=100 E1", "e": "E2=200 E1", "f": "E2=1000 E1", "correct": "d", "exp": "Wielkość zgromadzonej energii ma relację liniową z kwadratem wywartego napięcia (1/2*C*U^2). Napięcie poszło w górę 10 razy, energia musi urosnąć wobec tego kwadratowo - aż sto razy." },
+  { "id": 44, "type": "choice", "q": "Kwadratową ramkę o boku a=10cm wykonaną z przewodnika, w którym płynie prąd o natężeniu I=10A umieszczono w jednorodnym polu magnetycznym o indukcji B=1T. Ramka została umieszczona tak, że jej płaszczyzna jest równoległa względem linii sił pola magnetycznego. Moment siły działającej na ramkę wynosi:", "a": "0 J", "b": "0.1 Nm", "c": "1 Nm", "d": "10 Nm", "e": "100 Nm", "f": "żadne z powyższych", "correct": "b", "exp": "Gdy płaszczyzna jest równoległa do linii B, wektor normalny tej płaszczyzny jest do wektora B ściśle prostopadły. Moment to M = I*A*B*sin(90st) = 10 * 0.01m^2 * 1 * 1 = 0.1 Nm." },
+  { "id": 45, "type": "choice", "q": "Czy falę dźwiękową i świetlną mogą rozchodzić się w próżni?", "a": "obie TAK", "b": "obie NIE", "c": "dźwięk TAK a światło NIE", "d": "dźwięk NIE a światło TAK", "correct": "d", "exp": "Fale elektomagnetyczne absolutnie nie pożądają do swojej podróży obecności gęstego środowiska materialnego – przeniosą się poprzez próżnię. Dźwięk bez cząsteczek nie ma prawa drgać." },
+  { "id": 46, "type": "choice", "q": "Długość nitki pewnego wahadła matematycznego wydłużono czterokrotnie. Można powiedzieć, że częstotliwość jego drgań:", "a": "zmalała 2 razy", "b": "wzrosła 2 razy", "c": "wzrosła 4 razy", "d": "zmalała 4 razy", "e": "wzrosła 16 razy", "f": "nie zmieniła się", "correct": "a", "exp": "Okres T rośnie podług pierwiastka z długości linki, co nakazuje mu rosnąć dwukrotnie. Ponieważ f = 1/T, częstotliwość zmniejsza się o dwoje." },
+  { "id": 47, "type": "choice", "q": "Wykonując doświadczenie z wahadłem sprężynowym student najpierw wychylił masę o 1 cm z położenia równowagi i zaobserwował częstotliwość drgań f1 a następnie wychylił o 2 cm i zaobserwował częstotliwość drgań f2. Można powiedzieć, że:", "a": "f2=4*f1", "b": "f2=f1", "c": "f2=f1/2", "d": "f2=2*f1", "e": "f2=f1^-1", "f": "żadne z powyższych", "correct": "b", "exp": "Prawo izochronizmu małych drgań harmonicznych implikuje ujemnie bezwzględną zależność między częstotliwością a zadaniem pierwotnego stopnia amplitudy sprężyny." },
+  { "id": 49, "type": "choice", "q": "Która z fal jest falą podłużną:", "a": "fala uderzeniowa", "b": "mikrofala", "c": "fala na wodzie", "d": "światło", "e": "fala radiowa", "f": "wszystkie wymienione wcześniej", "correct": "a", "exp": "Fale uderzeniowe (i dźwiękowe) to drgania przemieszczania kompresji i odprężania objętości zgodnego z pędem przestrzennym samej fali (fala podłużna). Fale świetlne, radiowe czy zmarszczki na tafli wody podłużnymi w ten sam naturalny sposób nie są." },
+  { "id": 51, "type": "choice", "q": "Pewien kondensator płaski ma okładki o powierzchni 10 cm^2 umieszczone w odległości 1 mm. Jeżeli okładki zbliżymy na odległość 0.1 mm to pojemność tego kondensatora:", "a": "wzrośnie 3 razy", "b": "zmaleje 3 razy", "c": "wzrosła 9 razy", "d": "zmaleje 9 razy", "e": "wzrośnie 10 razy", "f": "zmaleje 10 razy", "g": "wzrośnie 100 razy", "h": "zmaleje 100 razy", "correct": "e", "exp": "Spadek wymiaru oddalenia na dystansie przekłada się obiektywnie do natychmiastowego wystrzału parametru C. Mamy odwrotną proporcję - 10-krotnie maleje d, czyli 10-krotnie do góry poleci ujęta pojemność." },
+  { "id": 52, "type": "choice", "q": "Kwadratową ramkę o boku a=10 cm wykonaną z przewodnika, w którym płynie prąd o natężeniu I=10A umieszczono w jednorodnym polu magnetycznym o indukcji B=1 T Ramka została umieszczona tak, że jej płaszczyzna jest prostopadła względem linii sił pola magnetycznego. Moment siły działającej na ramkę wynosi:", "a": "0 j", "b": "0.1 Nm", "c": "1 Nm", "d": "10 Nm", "e": "100 Nm", "f": "żadne z powyższych", "correct": "a", "exp": "Będąc rygorystycznie pod kątem prostym, wektor powierzchni jest wektorem dokładnie wpasowanym w tor samego oporu strumienia magnetycznego – sin(0) równa zero, wektor wykręcenia ustaje." },
+  { "id": 53, "type": "choice", "q": "Strumień elektronów wpada w obszar jednorodnego pola magnetycznego wytworzonego przez odpowiednio uformowane cewki, przez które płynie prąd elektryczny. W wyniku tego wiązka elektronów zostaje odchylona. Powyższy układ jest jednym z najważniejszych elementów:", "a": "monitora CRT", "b": "monitora plazmowego", "d": "monitora LED", "e": "silnika elektrycznego", "f": "prądnicy", "g": "monitora OLED", "correct": "a", "exp": "Tradycyjny model lampy elektronopromieniowej z dawnych sprzętów (CRT - Cathode-Ray Tube) układa swój strumień z działa na ekran sterując jego trajektorią przez silne poprzeczne pola cewek." },
+  { "id": 54, "type": "choice", "q": "Amplituda drgań wahadła swobodnego wraz z upływem czasu:", "a": "maleje liniowo", "b": "maleje kwadratowo", "c": "maleje wykładniczo", "d": "maleje logarytmicznie", "f": "nie zmienia się", "correct": "f", "exp": "Dla klasycznego abstrakcyjnego idealnego układu nietłumionego wahadła 'swobodnego', w rozumieniu braku wymuszeń zachowuje ono stan stacjonarny swojego wychylenia nieubłaganie." },
+  { "id": 55, "type": "choice", "q": "Częstotliwość drgań tłumionych wahadła wraz z upływem czasu:", "a": "maleje liniowo", "b": "maleje kwadratowo", "c": "maleje wykładniczo", "d": "maleje logarytmicznie", "e": "nie zmienia się", "correct": "e", "exp": "W przeciwieństwie do gwałtownie ubywającej z sił amplitudy, częstość własna powiązana z siłą stabilizującego obwodu drgań ma parametr w dużej mierze zupełnie niezmienny z biegiem czasu." }
+];
+
+
+
+// Ensure every question has an explanation (fill missing ones)
+        questionBank.forEach(q => {
+            if (!q.exp || (typeof q.exp === 'string' && q.exp.trim() === '')) q.exp = 'Brak wyjaśnienia.';
+        });
+
+        // Helper: return available choice keys for a question
+        function getChoiceKeys(q) {
+            return Object.keys(q)
+                .filter(key => key !== 'q' && /^[a-z]$/i.test(key) && q[key] !== undefined && q[key] !== null && String(q[key]).trim() !== '')
+                .sort((left, right) => left.localeCompare(right, 'pl', { sensitivity: 'base' }));
+        }
+
+        function getChoiceOptionClasses(isSelected, useCompactGrid) {
+            if (useCompactGrid) {
+                return isSelected
+                    ? "w-full min-h-24 rounded-xl border border-blue-500 bg-blue-50 dark:bg-blue-900/30 p-3 text-left flex flex-col items-start justify-between gap-2 transition-all font-semibold"
+                    : "w-full min-h-24 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-3 text-left flex flex-col items-start justify-between gap-2 transition-all font-medium hover:bg-slate-50 dark:hover:bg-slate-700/50";
+            }
+
+            return isSelected
+                ? "w-full text-left p-4 rounded-xl border border-blue-500 bg-blue-50 dark:bg-blue-900/30 font-semibold flex items-center space-x-3"
+                : "w-full text-left p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-all font-medium flex items-center space-x-3";
+        }
+
+        function getChoiceBadgeClasses(isSelected, useCompactGrid) {
+            if (useCompactGrid) {
+                return isSelected
+                    ? "w-7 h-7 rounded-md flex items-center justify-center font-bold shrink-0 bg-blue-600 text-white text-xs"
+                    : "w-7 h-7 rounded-md flex items-center justify-center font-bold shrink-0 bg-slate-100 dark:bg-slate-700 text-slate-500 text-xs";
+            }
+
+            return isSelected
+                ? "w-8 h-8 rounded-lg flex items-center justify-center font-bold shrink-0 bg-blue-600 text-white"
+                : "w-8 h-8 rounded-lg flex items-center justify-center font-bold shrink-0 bg-slate-100 dark:bg-slate-700 text-slate-500";
+        }
+
+        function getCorrectAnswers(q) {
+            return String(q.correct || '')
+                .split(',')
+                .map(part => part.trim())
+                .filter(Boolean);
+        }
+
+        function isMultiChoiceQuestion(q) {
+            return q.type === 'multi' || q.type === 'multiple' || getCorrectAnswers(q).length > 1;
+        }
+
+        function normalizeAnswerList(answer) {
+            return String(answer || '')
+                .split(',')
+                .map(part => part.trim())
+                .filter(Boolean)
+                .sort();
+        }
+
+        function isAnswerCorrect(q, answer) {
+            const correctAnswers = getCorrectAnswers(q).sort();
+            if (isMultiChoiceQuestion(q)) {
+                return normalizeAnswerList(answer).join(',') === correctAnswers.join(',');
+            }
+
+            return normalizeAnswerList(answer)[0] === correctAnswers[0];
+        }
+
+        function formatAnswerText(q, answer) {
+            if (isMultiChoiceQuestion(q)) {
+                const answers = normalizeAnswerList(answer);
+                if (answers.length === 0) {
+                    return 'Brak odpowiedzi';
+                }
+
+                return answers.map(key => `${key.toUpperCase()}) ${escapeHtml(q[key])}`).join(', ');
+            }
+
+            if (!answer) {
+                return 'Brak odpowiedzi';
+            }
+
+            return `${String(answer).toUpperCase()}) ${escapeHtml(q[answer])}`;
+        }
+
+        // Fisher-Yates shuffle
+        function shuffleArray(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        // State variables
+        let studyIndex = 0;
+        let studyRandom = false;
+        let studyOrder = Array.from(Array(questionBank.length).keys()); // indices
+        let studyOrderPos = 0;
+        let studyMultiSelections = {};
+        let examState = {
+            active: false,
+            questions: [],
+            currentIndex: 0,
+            answers: {},
+            timer: null,
+            timeRemaining: 0,
+            timeLimit: 0
+        };
+
+        // Initialize App on load
+        window.onload = function() {
+            initProgress();
+            switchTab('dashboard');
+            loadStudyQuestion();
+            loadBrowseDatabase();
+            loadStarredQuestions();
+            
+            // Check system preferences for theme
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                document.getElementById('theme-sun').classList.remove('hidden');
+            } else {
+                document.documentElement.classList.remove('dark');
+                document.getElementById('theme-moon').classList.remove('hidden');
+            }
+
+            // Theme toggle listener
+            document.getElementById('theme-toggle').onclick = function() {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.theme = 'light';
+                    document.getElementById('theme-sun').classList.add('hidden');
+                    document.getElementById('theme-moon').classList.remove('hidden');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.theme = 'dark';
+                    document.getElementById('theme-moon').classList.add('hidden');
+                    document.getElementById('theme-sun').classList.remove('hidden');
+                }
+            };
+        };
+
+        // Navigation Switching Handler
+        function switchTab(tabName) {
+            const sections = ['sec-dashboard', 'sec-study', 'sec-exam', 'sec-browse', 'sec-starred'];
+            const navButtons = {
+                'dashboard': 'nav-dashboard',
+                'study': 'nav-study',
+                'exam': 'nav-exam',
+                'browse': 'nav-browse',
+                'starred': 'nav-starred'
+            };
+
+            // Hide all sections
+            sections.forEach(sec => document.getElementById(sec).classList.add('hidden'));
+            
+            // Show selected section
+            document.getElementById(`sec-${tabName}`).classList.remove('hidden');
+
+            // Reset navigation button styles
+            Object.keys(navButtons).forEach(key => {
+                const btn = document.getElementById(navButtons[key]);
+                if (key === tabName) {
+                    btn.className = "w-full flex items-center space-x-3 px-3 py-2.5 text-sm font-medium rounded-xl transition-all bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400";
+                } else {
+                    btn.className = "w-full flex items-center space-x-3 px-3 py-2.5 text-sm font-medium rounded-xl transition-all text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700/50";
+                }
+            });
+
+            // Trigger math rendering
+            if (typeof MathJax !== 'undefined') {
+                MathJax.typesetPromise();
+            }
+        }
+
+        // Setup Event Listeners for menu buttons
+        document.getElementById('nav-dashboard').onclick = () => switchTab('dashboard');
+        document.getElementById('nav-study').onclick = () => switchTab('study');
+        document.getElementById('nav-exam').onclick = () => switchTab('exam');
+        document.getElementById('nav-browse').onclick = () => switchTab('browse');
+        document.getElementById('nav-starred').onclick = () => switchTab('starred');
+
+        // Progress & Statistics Core Logic
+        function initProgress() {
+            let userStats = JSON.parse(localStorage.getItem('networks_userStats')) || {
+                solved: {},
+                correctCount: 0,
+                wrongCount: 0,
+                stars: []
+            };
+            localStorage.setItem('networks_userStats', JSON.stringify(userStats));
+            updateProgressDOM();
+        }
+
+        function updateProgressDOM() {
+            const stats = JSON.parse(localStorage.getItem('networks_userStats'));
+            const totalQuestions = questionBank.length;
+            const solvedCount = Object.keys(stats.solved).length;
+            
+            document.getElementById('stat-solved').innerText = `${solvedCount} / ${totalQuestions}`;
+            
+            const totalAttempts = stats.correctCount + stats.wrongCount;
+            const accuracy = totalAttempts > 0 ? Math.round((stats.correctCount / totalAttempts) * 100) : 0;
+            document.getElementById('stat-accuracy').innerText = `${accuracy}%`;
+
+            const percent = Math.round((solvedCount / totalQuestions) * 100);
+            document.getElementById('stat-progress-bar').style.width = `${percent}%`;
+        }
+
+        function toggleStar(id) {
+            let stats = JSON.parse(localStorage.getItem('networks_userStats'));
+            if (stats.stars.includes(id)) {
+                stats.stars = stats.stars.filter(starId => starId !== id);
+                showToast("Pytanie usunięte z ulubionych");
+            } else {
+                stats.stars.push(id);
+                showToast("Pytanie dodane do ulubionych");
+            }
+            localStorage.setItem('networks_userStats', JSON.stringify(stats));
+            loadStarredQuestions();
+            
+            // Re-render current question views if active
+            if (!document.getElementById('sec-study').classList.contains('hidden')) {
+                loadStudyQuestion();
+            }
+        }
+
+        function resetStats() {
+            if (confirm("Czy na pewno chcesz zresetować wszystkie statystyki, historię odpowiedzi i ulubione pytania?")) {
+                localStorage.removeItem('networks_userStats');
+                initProgress();
+                studyIndex = 0;
+                loadStudyQuestion();
+                loadStarredQuestions();
+                showToast("Wszystkie postępy zostały zresetowane.");
+                switchTab('dashboard');
+            }
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').innerText = msg;
+            toast.classList.remove('translate-y-20');
+            toast.classList.add('translate-y-0');
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0');
+                toast.classList.add('translate-y-20');
+            }, 2500);
+        }
+
+        // ==========================================
+        // STUDY MODE ENGINE
+        // ==========================================
+        function loadStudyQuestion() {
+            const card = document.getElementById('study-card');
+            const q = questionBank[studyIndex];
+            const stats = JSON.parse(localStorage.getItem('networks_userStats'));
+            const isStarred = stats.stars.includes(q.id);
+            const multiChoice = isMultiChoiceQuestion(q);
+            studyMultiSelections[q.id] = [];
+            const savedStudyAnswer = studyMultiSelections[q.id] || [];
+            let optionsHTML = '';
+            if (q.type === 'choice' || multiChoice) {
+                const keys = getChoiceKeys(q);
+                // create array of {k,text} and shuffle display order
+                const opts = shuffleArray(keys.map(k => ({ k, text: q[k] })));
+                const useCompactGrid = opts.length > 4;
+
+                if (multiChoice) {
+                    optionsHTML = `
+                        <div class="${useCompactGrid ? 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3' : 'space-y-3'}">
+                            ${opts.map((opt, idx) => `
+                                <button onclick="toggleStudyMultiAnswer('${opt.k}')" id="opt-${opt.k}" class="${getChoiceOptionClasses(savedStudyAnswer.includes(opt.k), useCompactGrid)}" aria-pressed="${savedStudyAnswer.includes(opt.k)}">
+                                    <div class="flex items-center gap-2">
+                                        <span class="${getChoiceBadgeClasses(savedStudyAnswer.includes(opt.k), useCompactGrid)}">${String.fromCharCode(65 + idx)}</span>
+                                        ${!useCompactGrid ? '<span class="text-[11px] uppercase tracking-wider text-slate-400 dark:text-slate-500">Wybór</span>' : ''}
+                                    </div>
+                                    <span class="${useCompactGrid ? 'text-sm leading-snug' : ''}">${escapeHtml(opt.text)}</span>
+                                </button>
+                            `).join('')}
+                        </div>
+                        <div class="flex items-center justify-between gap-3 pt-2">
+                            <p class="text-xs text-slate-400">Zaznacz wszystkie poprawne odpowiedzi, potem kliknij sprawdzenie.</p>
+                            <button onclick="checkStudyMultiAnswer()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2.5 rounded-xl text-sm transition shadow-sm">Sprawdź odpowiedź</button>
+                        </div>
+                    `;
+                } else {
+                    optionsHTML = `
+                        <div class="${useCompactGrid ? 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3' : 'space-y-3'}">
+                            ${opts.map((opt, idx) => `
+                                <button onclick="checkStudyAnswer('${opt.k}')" id="opt-${opt.k}" class="${getChoiceOptionClasses(false, useCompactGrid)}">
+                                    <div class="flex items-center gap-2">
+                                        <span class="${getChoiceBadgeClasses(false, useCompactGrid)}">${String.fromCharCode(65 + idx)}</span>
+                                        ${!useCompactGrid ? '<span class="text-[11px] uppercase tracking-wider text-slate-400 dark:text-slate-500">Odpowiedź</span>' : ''}
+                                    </div>
+                                    <span class="${useCompactGrid ? 'text-sm leading-snug' : ''}">${escapeHtml(opt.text)}</span>
+                                </button>
+                            `).join('')}
+                        </div>
+                    `;
+                }
+            } else if (q.type === 'open') {
+                optionsHTML = `
+                    <div class="space-y-4">
+                        <textarea id="open-answer" placeholder="Wpisz swoją odpowiedź lub przemyślenia..." rows="3" class="w-full p-4 border rounded-xl bg-slate-50 dark:bg-slate-700 border-slate-200 dark:border-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"></textarea>
+                        <div class="flex space-x-3">
+                            <button onclick="showOpenExplanation(true)" class="flex-1 bg-green-600 hover:bg-green-700 text-white font-semibold py-2.5 px-4 rounded-xl text-sm transition duration-150 shadow-sm">Znam odpowiedź / Pokaż wyjaśnienie</button>
+                            <button onclick="showOpenExplanation(false)" class="flex-1 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 font-semibold py-2.5 px-4 rounded-xl text-sm transition duration-150">Pokaż wzorzec</button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            card.innerHTML = `
+                <div class="flex items-center justify-between border-b pb-4 border-slate-100 dark:border-slate-700">
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wide">Pytanie ${q.id} z ${questionBank.length}</span>
+                    <button onclick="toggleStar(${q.id})" class="text-slate-400 hover:text-amber-500 transition-colors">
+                        <svg class="w-6 h-6 ${isStarred ? 'text-amber-500 fill-current' : 'fill-none'}" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="space-y-4">
+                    <p class="text-lg font-bold leading-snug">${escapeHtml(q.q)}</p>
+                    ${optionsHTML}
+                </div>
+
+                <!-- Explanation Box -->
+                <div id="study-exp" class="hidden mt-6 p-5 rounded-2xl bg-slate-50 dark:bg-slate-700/40 border-l-4 border-blue-500 text-slate-700 dark:text-slate-300 space-y-2">
+                    <p class="font-bold text-sm text-blue-600 dark:text-blue-400 uppercase tracking-wider">Wyjaśnienie i Komentarz:</p>
+                    <p class="text-sm leading-relaxed">${escapeHtml(q.exp)}</p>
+                </div>
+
+                <!-- Action Button Controls -->
+                <div class="flex justify-between items-center pt-4 border-t border-slate-100 dark:border-slate-700">
+                    <button onclick="prevStudyQuestion()" class="bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-800 dark:text-slate-200 font-semibold px-5 py-2.5 rounded-xl text-sm transition" ${studyIndex === 0 ? 'disabled' : ''}>Poprzednie</button>
+                    <button onclick="nextStudyQuestion()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2.5 rounded-xl text-sm transition shadow-sm">Następne</button>
+                </div>
+            `;
+
+            if (typeof MathJax !== 'undefined') {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function rebuildStudyOrder() {
+            studyOrder = shuffleArray(Array.from(Array(questionBank.length).keys()));
+            studyOrderPos = studyOrder.indexOf(studyIndex);
+            if (studyOrderPos === -1) {
+                studyOrderPos = 0;
+            }
+        }
+
+        function moveStudyQuestion(direction) {
+            if (studyRandom) {
+                rebuildStudyOrder();
+
+                const nextPos = direction === 'next'
+                    ? (studyOrderPos + 1) % studyOrder.length
+                    : (studyOrderPos - 1 + studyOrder.length) % studyOrder.length;
+
+                studyIndex = studyOrder[nextPos];
+                studyOrderPos = nextPos;
+                loadStudyQuestion();
+                return;
+            }
+
+            if (direction === 'next') {
+                if (studyIndex < questionBank.length - 1) {
+                    studyIndex++;
+                    loadStudyQuestion();
+                } else {
+                    showToast("Gratulacje! Przeszedłeś całą bazę pytań!");
+                }
+            } else if (direction === 'prev') {
+                if (studyIndex > 0) {
+                    studyIndex--;
+                    loadStudyQuestion();
+                }
+            }
+        }
+
+        function checkStudyAnswer(choice) {
+            const q = questionBank[studyIndex];
+            const keys = getChoiceKeys(q);
+            const correctAnswers = getCorrectAnswers(q);
+            const useCompactGrid = keys.length > 4;
+
+            // Highlight and disable only available options
+            keys.forEach(opt => {
+                const btn = document.getElementById(`opt-${opt}`);
+                if (!btn) return;
+                btn.disabled = true; // Disable further clicking
+                if (correctAnswers.includes(opt)) {
+                    btn.className = getChoiceOptionClasses(true, useCompactGrid).replace('border-blue-500 bg-blue-50 dark:bg-blue-900/30', 'border-green-500 bg-green-50 dark:bg-green-900/20 text-green-900 dark:text-green-300');
+                } else if (opt === choice) {
+                    btn.className = getChoiceOptionClasses(true, useCompactGrid).replace('border-blue-500 bg-blue-50 dark:bg-blue-900/30', 'border-red-500 bg-red-50 dark:bg-red-900/20 text-red-900 dark:text-red-300');
+                }
+            });
+
+            // Save state
+            updateQuestionHistory(q.id, isAnswerCorrect(q, choice));
+
+            // Display Explanation Box
+            document.getElementById('study-exp').classList.remove('hidden');
+        }
+
+        function toggleStudyMultiAnswer(choice) {
+            const q = questionBank[studyIndex];
+            const useCompactGrid = getChoiceKeys(q).length > 4;
+            const current = Array.isArray(studyMultiSelections[q.id]) ? [...studyMultiSelections[q.id]] : [];
+            studyMultiSelections[q.id] = current.includes(choice)
+                ? current.filter(item => item !== choice)
+                : [...current, choice];
+
+            getChoiceKeys(q).forEach(opt => {
+                const btn = document.getElementById(`opt-${opt}`);
+                if (!btn) return;
+
+                const selected = studyMultiSelections[q.id].includes(opt);
+                btn.className = getChoiceOptionClasses(selected, useCompactGrid);
+                btn.setAttribute('aria-pressed', String(selected));
+
+                const badge = btn.querySelector('span');
+                if (badge) {
+                    badge.className = getChoiceBadgeClasses(selected, useCompactGrid);
+                }
+            });
+        }
+
+        function checkStudyMultiAnswer() {
+            const q = questionBank[studyIndex];
+            const keys = getChoiceKeys(q);
+            const useCompactGrid = keys.length > 4;
+            const correctAnswers = getCorrectAnswers(q).sort();
+            const selectedAnswers = normalizeAnswerList(studyMultiSelections[q.id]);
+
+            keys.forEach(opt => {
+                const btn = document.getElementById(`opt-${opt}`);
+                if (!btn) return;
+                btn.disabled = true;
+                if (correctAnswers.includes(opt)) {
+                    btn.className = getChoiceOptionClasses(true, useCompactGrid).replace('border-blue-500 bg-blue-50 dark:bg-blue-900/30', 'border-green-500 bg-green-50 dark:bg-green-900/20 text-green-900 dark:text-green-300');
+                } else if (selectedAnswers.includes(opt)) {
+                    btn.className = getChoiceOptionClasses(true, useCompactGrid).replace('border-blue-500 bg-blue-50 dark:bg-blue-900/30', 'border-red-500 bg-red-50 dark:bg-red-900/20 text-red-900 dark:text-red-300');
+                }
+            });
+
+            updateQuestionHistory(q.id, selectedAnswers.join(',') === correctAnswers.join(','));
+            document.getElementById('study-exp').classList.remove('hidden');
+        }
+
+        function showOpenExplanation(isCorrect) {
+            updateQuestionHistory(questionBank[studyIndex].id, isCorrect);
+            document.getElementById('study-exp').classList.remove('hidden');
+        }
+
+        function updateQuestionHistory(id, isCorrect) {
+            let stats = JSON.parse(localStorage.getItem('networks_userStats'));
+            stats.solved[id] = true;
+            if (isCorrect) {
+                stats.correctCount++;
+            } else {
+                stats.wrongCount++;
+            }
+            localStorage.setItem('networks_userStats', JSON.stringify(stats));
+            updateProgressDOM();
+        }
+
+        function prevStudyQuestion() {
+            moveStudyQuestion('prev');
+        }
+
+        function nextStudyQuestion() {
+            moveStudyQuestion('next');
+        }
+
+        function jumpToStudyQuestion(num) {
+            const parsed = parseFloat(num);
+            if (parsed >= 1 && parsed <= 201) {
+                // Map question number to index
+                const targetIdx = questionBank.findIndex(q => q.id === parsed);
+                if (targetIdx !== -1) {
+                    studyIndex = targetIdx;
+                    studyMultiSelections = {};
+                    if (studyRandom) {
+                        const pos = studyOrder.indexOf(studyIndex);
+                        if (pos !== -1) studyOrderPos = pos;
+                    }
+                    loadStudyQuestion();
+                }
+            }
+        }
+
+        // Toggle shuffle for study mode
+        function toggleStudyShuffle(checked) {
+            studyRandom = !!checked;
+            if (studyRandom) {
+                rebuildStudyOrder();
+            } else {
+                studyOrder = Array.from(Array(questionBank.length).keys());
+                studyOrderPos = studyIndex;
+            }
+            showToast(studyRandom ? 'Włączono losową kolejność pytań' : 'Wyłączono losową kolejność pytań');
+        }
+
+        // ==========================================
+        // EXAM MODE ENGINE
+        // ==========================================
+        function startExam() {
+            const countVal = document.getElementById('exam-count').value;
+            const timeVal = document.getElementById('exam-time').value;
+
+            // Generate customized array of randomized questions
+            let shuffled = [...questionBank].sort(() => 0.5 - Math.random());
+            let qCount = countVal === 'all' ? questionBank.length : parseInt(countVal);
+            
+            examState.questions = shuffled.slice(0, qCount);
+            examState.currentIndex = 0;
+            examState.answers = {};
+            examState.active = true;
+
+            // Handle timer configuration
+            if (timeVal === 'no-limit') {
+                examState.timeLimit = 0;
+                document.getElementById('exam-timer-wrapper').classList.add('hidden');
+            } else {
+                examState.timeLimit = parseInt(timeVal) * 60;
+                examState.timeRemaining = examState.timeLimit;
+                document.getElementById('exam-timer-wrapper').classList.remove('hidden');
+                updateExamTimerDisplay();
+                
+                // Clear any existing timer
+                if (examState.timer) clearInterval(examState.timer);
+                examState.timer = setInterval(() => {
+                    examState.timeRemaining--;
+                    updateExamTimerDisplay();
+                    if (examState.timeRemaining <= 0) {
+                        clearInterval(examState.timer);
+                        finishExam(true);
+                    }
+                }, 1000);
+            }
+
+            document.getElementById('exam-setup').classList.add('hidden');
+            document.getElementById('exam-active').classList.remove('hidden');
+            loadExamQuestion();
+        }
+
+        function updateExamTimerDisplay() {
+            const mins = Math.floor(examState.timeRemaining / 60);
+            const secs = examState.timeRemaining % 60;
+            document.getElementById('exam-timer').innerText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        function loadExamQuestion() {
+            const card = document.getElementById('exam-question-card');
+            const q = examState.questions[examState.currentIndex];
+            const savedAns = examState.answers[q.id];
+            const multiChoice = isMultiChoiceQuestion(q);
+
+            document.getElementById('exam-progress-badge').innerText = `Pytanie ${examState.currentIndex + 1} / ${examState.questions.length}`;
+
+            let inputHTML = '';
+            if (q.type === 'choice' || multiChoice) {
+                const keys = getChoiceKeys(q);
+                const opts = shuffleArray(keys.map(k => ({ k, text: q[k] })));
+                const useCompactGrid = opts.length > 4;
+
+                if (multiChoice) {
+                    const savedMulti = Array.isArray(savedAns) ? savedAns : [];
+                    inputHTML = `
+                        <div class="${useCompactGrid ? 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3' : 'space-y-3'}">
+                            ${opts.map((opt, idx) => {
+                                const isSelected = savedMulti.includes(opt.k);
+                                return `
+                                    <button onclick="toggleExamAnswer('${opt.k}')" class="${getChoiceOptionClasses(isSelected, useCompactGrid)}" id="exam-opt-${opt.k}" aria-pressed="${isSelected}">
+                                        <div class="flex items-center gap-2">
+                                            <span class="${getChoiceBadgeClasses(isSelected, useCompactGrid)}">${String.fromCharCode(65 + idx)}</span>
+                                            ${!useCompactGrid ? '<span class="text-[11px] uppercase tracking-wider text-slate-400 dark:text-slate-500">Wybór</span>' : ''}
+                                        </div>
+                                        <span class="${useCompactGrid ? 'text-sm leading-snug' : ''}">${escapeHtml(opt.text)}</span>
+                                    </button>
+                                `;
+                            }).join('')}
+                        </div>
+                        <p class="text-xs text-slate-400">Wybierz wszystkie poprawne odpowiedzi. Klikanie przełącza zaznaczenie.</p>
+                    `;
+                } else {
+                    inputHTML = `
+                        <div class="${useCompactGrid ? 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3' : 'space-y-3'}">
+                            ${opts.map((opt, idx) => {
+                                const isSelected = savedAns === opt.k;
+                                return `
+                                    <button onclick="selectExamAnswer('${opt.k}')" class="${getChoiceOptionClasses(isSelected, useCompactGrid)}" id="exam-opt-${opt.k}">
+                                        <div class="flex items-center gap-2">
+                                            <span class="${getChoiceBadgeClasses(isSelected, useCompactGrid)}">${String.fromCharCode(65 + idx)}</span>
+                                            ${!useCompactGrid ? '<span class="text-[11px] uppercase tracking-wider text-slate-400 dark:text-slate-500">Odpowiedź</span>' : ''}
+                                        </div>
+                                        <span class="${useCompactGrid ? 'text-sm leading-snug' : ''}">${escapeHtml(opt.text)}</span>
+                                    </button>
+                                `;
+                            }).join('')}
+                        </div>
+                    `;
+                }
+            } else if (q.type === 'open') {
+                inputHTML = `
+                    <div class="space-y-2">
+                        <textarea id="exam-open-ans" onkeyup="saveExamOpenAnswer(this.value)" placeholder="Wpisz słowa kluczowe lub pełną odpowiedź..." rows="4" class="w-full p-4 border rounded-xl bg-slate-50 dark:bg-slate-700 border-slate-200 dark:border-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">${savedAns || ''}</textarea>
+                        <p class="text-xs text-slate-400">Pytania otwarte w trybie egzaminu zostaną poddane ocenie samokontrolnej na ekranie wyników.</p>
+                    </div>
+                `;
+            }
+
+            card.innerHTML = `
+                <div class="space-y-4">
+                    <p class="text-lg font-bold leading-snug">${escapeHtml(q.q)}</p>
+                    ${inputHTML}
+                </div>
+            `;
+
+            // Adjust navigation buttons
+            document.getElementById('exam-prev-btn').disabled = examState.currentIndex === 0;
+            document.getElementById('exam-next-btn').innerText = examState.currentIndex === examState.questions.length - 1 ? 'Zakończ test' : 'Następne';
+
+            if (typeof MathJax !== 'undefined') {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function selectExamAnswer(opt) {
+            const q = examState.questions[examState.currentIndex];
+            examState.answers[q.id] = opt;
+            const useCompactGrid = getChoiceKeys(q).length > 4;
+
+            // Re-render choices to update selected state UI (only available keys)
+            const keys = getChoiceKeys(q);
+            keys.forEach(o => {
+                const btn = document.getElementById(`exam-opt-${o}`);
+                if (!btn) return;
+                const badge = btn.querySelector('span');
+                if (o === opt) {
+                    btn.className = getChoiceOptionClasses(true, useCompactGrid);
+                    if (badge) badge.className = getChoiceBadgeClasses(true, useCompactGrid);
+                } else {
+                    btn.className = getChoiceOptionClasses(false, useCompactGrid);
+                    if (badge) badge.className = getChoiceBadgeClasses(false, useCompactGrid);
+                }
+            });
+        }
+
+        function toggleExamAnswer(opt) {
+            const q = examState.questions[examState.currentIndex];
+            const useCompactGrid = getChoiceKeys(q).length > 4;
+            const current = Array.isArray(examState.answers[q.id]) ? [...examState.answers[q.id]] : [];
+            examState.answers[q.id] = current.includes(opt)
+                ? current.filter(item => item !== opt)
+                : [...current, opt];
+
+            const selected = examState.answers[q.id];
+            const keys = getChoiceKeys(q);
+            keys.forEach(o => {
+                const btn = document.getElementById(`exam-opt-${o}`);
+                if (!btn) return;
+                const isSelected = selected.includes(o);
+                btn.className = getChoiceOptionClasses(isSelected, useCompactGrid);
+                btn.setAttribute('aria-pressed', String(isSelected));
+
+                const badge = btn.querySelector('span');
+                if (badge) {
+                    badge.className = getChoiceBadgeClasses(isSelected, useCompactGrid);
+                }
+            });
+        }
+
+        function saveExamOpenAnswer(val) {
+            const q = examState.questions[examState.currentIndex];
+            examState.answers[q.id] = val;
+        }
+
+        function prevExamQuestion() {
+            if (examState.currentIndex > 0) {
+                examState.currentIndex--;
+                loadExamQuestion();
+            }
+        }
+
+        function nextExamQuestion() {
+            if (examState.currentIndex < examState.questions.length - 1) {
+                examState.currentIndex++;
+                loadExamQuestion();
+            } else {
+                finishExam(false);
+            }
+        }
+
+        function finishExam(timeout = false) {
+            if (examState.timer) clearInterval(examState.timer);
+            examState.active = false;
+
+            if (timeout) {
+                alert("Czas minął! Egzamin został automatycznie zakończony.");
+            } else {
+                if (!confirm("Czy na pewno chcesz zakończyć egzamin i poznać swój wynik?")) return;
+            }
+
+            document.getElementById('exam-active').classList.add('hidden');
+            document.getElementById('exam-results').classList.remove('hidden');
+
+            calculateAndDisplayResults();
+        }
+
+        function calculateAndDisplayResults() {
+            let correctCount = 0;
+            let totalEvaluated = 0;
+            let reviewHTML = '';
+
+            examState.questions.forEach((q, idx) => {
+                const userAns = examState.answers[q.id];
+                const isCorrect = isAnswerCorrect(q, userAns);
+                
+                if (q.type === 'choice' || isMultiChoiceQuestion(q)) {
+                    totalEvaluated++;
+                    if (isCorrect) correctCount++;
+
+                    const correctAnswers = getCorrectAnswers(q);
+
+                    reviewHTML += `
+                        <div class="p-4 rounded-2xl border ${isCorrect ? 'border-green-200 bg-green-50/50 dark:border-green-900/30 dark:bg-green-900/10' : 'border-red-200 bg-red-50/50 dark:border-red-900/30 dark:bg-red-900/10'} space-y-2">
+                            <p class="font-bold text-sm text-slate-500 dark:text-slate-400">Pytanie ${idx + 1} (Szczegół ID: ${q.id})</p>
+                            <p class="font-bold text-base">${escapeHtml(q.q)}</p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm pt-2">
+                                <div class="${isCorrect ? 'text-green-700 dark:text-green-400' : 'text-red-700 dark:text-red-400'}">
+                                    <strong>Twoja odpowiedź:</strong> ${formatAnswerText(q, userAns)}
+                                </div>
+                                <div class="text-green-700 dark:text-green-400">
+                                    <strong>Poprawna odpowiedź:</strong> ${correctAnswers.map(key => `${key.toUpperCase()}) ${escapeHtml(q[key])}`).join(', ')}
+                                </div>
+                            </div>
+                            <div class="mt-2 text-xs text-slate-500 border-t pt-2 dark:border-slate-700">${escapeHtml(q.exp)}</div>
+                        </div>
+                    `;
+                } else if (q.type === 'open') {
+                    // Manual assessment widget for open questions
+                    reviewHTML += `
+                        <div id="self-assess-${q.id}" class="p-4 rounded-2xl border border-slate-200 bg-slate-50 dark:border-slate-700 dark:bg-slate-800 space-y-3">
+                            <p class="font-bold text-sm text-slate-500 dark:text-slate-400">Pytanie ${idx + 1} (Otwarte ID: ${q.id})</p>
+                            <p class="font-bold text-base">${escapeHtml(q.q)}</p>
+                            <div class="p-3 bg-white dark:bg-slate-700 rounded-xl text-sm border">
+                                <strong class="block text-xs text-slate-400 mb-1">Twoja odpowiedź:</strong>
+                                ${userAns ? escapeHtml(userAns) : '<span class="italic text-red-500">Brak odpowiedzi</span>'}
+                            </div>
+                            <div class="p-3 bg-blue-50/60 dark:bg-blue-900/10 rounded-xl text-sm border border-blue-100 dark:border-blue-900/30">
+                                <strong class="block text-xs text-blue-500 mb-1">Odpowiedź wzorcowa:</strong>
+                                ${escapeHtml(q.exp)}
+                            </div>
+                            <div class="flex items-center justify-between pt-2">
+                                <span class="text-xs text-slate-500 font-medium">Czy zaliczasz to pytanie?</span>
+                                <div class="flex space-x-2">
+                                    <button onclick="selfAssess(${q.id}, false)" class="px-3 py-1.5 text-xs bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400 rounded-lg font-bold">Niezaliczone</button>
+                                    <button onclick="selfAssess(${q.id}, true)" class="px-3 py-1.5 text-xs bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 rounded-lg font-bold">Zaliczone</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            document.getElementById('exam-results-review').innerHTML = reviewHTML;
+
+            // Stats calculation for the scoring card
+            const percentage = totalEvaluated > 0 ? Math.round((correctCount / totalEvaluated) * 100) : 0;
+            document.getElementById('exam-score').innerText = `${percentage}%`;
+            document.getElementById('exam-correct-count').innerText = `${correctCount} / ${totalEvaluated}`;
+
+            // Elapsed Time calculation
+            const elapsed = examState.timeLimit - examState.timeRemaining;
+            const mins = Math.floor(elapsed / 60);
+            const secs = elapsed % 60;
+            document.getElementById('exam-time-elapsed').innerText = `${mins}:${secs.toString().padStart(2, '0')}`;
+
+            // Grade evaluation threshold
+            const isPassed = percentage >= 50; // Threshold of 50%
+            const statusTitle = document.getElementById('exam-result-title');
+            const finalGrade = document.getElementById('exam-final-grade');
+            const iconBg = document.getElementById('exam-result-icon-bg');
+            const icon = document.getElementById('exam-result-icon');
+
+            if (isPassed) {
+                statusTitle.innerText = "Gratulacje! Zdałeś Egzamin!";
+                finalGrade.innerText = "Pozytywna";
+                finalGrade.className = "text-2xl font-bold mt-1 text-green-600 dark:text-green-400";
+                iconBg.className = "inline-flex p-4 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400";
+                icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>`;
+            } else {
+                statusTitle.innerText = "Niestety, nie zdałeś!";
+                finalGrade.innerText = "Negatywna";
+                finalGrade.className = "text-2xl font-bold mt-1 text-red-600 dark:text-red-400";
+                iconBg.className = "inline-flex p-4 rounded-full bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400";
+                icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>`;
+            }
+        }
+
+        // Custom self assessment algorithm for open questions
+        window.selfAssess = function(qId, status) {
+            const card = document.getElementById(`self-assess-${qId}`);
+            if (status) {
+                card.className = "p-4 rounded-2xl border border-green-200 bg-green-50/50 dark:border-green-900/30 dark:bg-green-900/10 space-y-3";
+                card.querySelector('div:last-child').innerHTML = `<span class="text-xs text-green-600 font-bold flex items-center space-x-1">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span>Oznaczono jako zaliczone</span>
+                </span>`;
+            } else {
+                card.className = "p-4 rounded-2xl border border-red-200 bg-red-50/50 dark:border-red-900/30 dark:bg-red-900/10 space-y-3";
+                card.querySelector('div:last-child').innerHTML = `<span class="text-xs text-red-600 font-bold flex items-center space-x-1">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <span>Oznaczono jako niezaliczone</span>
+                </span>`;
+            }
+            updateQuestionHistory(qId, status);
+        }
+
+        function exitExam() {
+            document.getElementById('exam-results').classList.add('hidden');
+            document.getElementById('exam-setup').classList.remove('hidden');
+        }
+
+        // ==========================================
+        // DATABASE BROWSER (SEARCH & LIST)
+        // ==========================================
+        function loadBrowseDatabase() {
+            const list = document.getElementById('browse-list');
+            list.innerHTML = questionBank.map(q => {
+                let badgeHTML = q.type === 'open' ? 
+                    `<span class="text-xs bg-purple-50 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400 font-bold px-2.5 py-1 rounded-lg">Otwarte</span>` : 
+                    `<span class="text-xs ${isMultiChoiceQuestion(q) ? 'bg-amber-50 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300' : 'bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400'} font-bold px-2.5 py-1 rounded-lg">${isMultiChoiceQuestion(q) ? 'Wielokrotny wybór' : 'Pojedynczy wybór'}</span>`;
+
+                return `
+                    <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 hover:shadow-md transition duration-150 space-y-3 browse-item" data-text="${q.q.toLowerCase()}" data-id="${q.id}">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-slate-400">Pytanie ${q.id}</span>
+                            <div class="flex items-center space-x-2">
+                                ${badgeHTML}
+                                <button onclick="studyNow(${q.id})" class="text-xs bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 px-2.5 py-1 rounded-lg transition-colors font-semibold">Nauka</button>
+                            </div>
+                        </div>
+                        <p class="font-bold text-base leading-snug">${escapeHtml(q.q)}</p>
+                        
+                        <!-- Collapsible answer explanation -->
+                        <details class="group border-t pt-3 border-slate-100 dark:border-slate-700 text-sm">
+                            <summary class="cursor-pointer font-semibold text-slate-500 hover:text-slate-800 dark:hover:text-slate-300 list-none flex items-center justify-between select-none">
+                                <span>Pokaż poprawną odpowiedź</span>
+                                <span class="transition duration-150 group-open:rotate-180">&darr;</span>
+                            </summary>
+                            <div class="mt-3 space-y-2 text-slate-600 dark:text-slate-300">
+                                ${(q.type === 'choice' || isMultiChoiceQuestion(q)) ? `
+                                    <p class="font-bold text-green-600 dark:text-green-400">
+                                        Poprawna odpowiedź: ${getCorrectAnswers(q).map(key => `${key.toUpperCase()}) ${escapeHtml(q[key])}`).join(', ')}
+                                    </p>
+                                ` : ''}
+                                <p class="text-xs leading-relaxed bg-slate-50 dark:bg-slate-900 p-3 rounded-xl border border-slate-100 dark:border-slate-800">${escapeHtml(q.exp)}</p>
+                            </div>
+                        </details>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function filterQuestions() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const items = document.getElementsByClassName('browse-item');
+            
+            Array.from(items).forEach(item => {
+                const text = item.getAttribute('data-text');
+                const id = item.getAttribute('data-id');
+                if (text.includes(query) || id === query) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        }
+
+        window.studyNow = function(id) {
+            const targetId = typeof id === 'string' ? parseFloat(id) : id;
+            const index = questionBank.findIndex(q => q.id === targetId);
+            if (index !== -1) {
+                studyIndex = index;
+                studyMultiSelections = {};
+                loadStudyQuestion();
+                switchTab('study');
+            }
+        }
+
+        // ==========================================
+        // STARRED / FAVORITES ENGINE
+        // ==========================================
+        function loadStarredQuestions() {
+            const list = document.getElementById('starred-list');
+            const stats = JSON.parse(localStorage.getItem('networks_userStats')) || { stars: [] };
+
+            if (stats.stars.length === 0) {
+                list.innerHTML = `
+                    <div class="text-center py-12 bg-white dark:bg-slate-800 rounded-3xl border border-dashed border-slate-200 dark:border-slate-700">
+                        <p class="text-slate-400">Nie dodałeś jeszcze żadnego pytania do ulubionych.</p>
+                        <button onclick="switchTab('study')" class="mt-4 text-blue-600 hover:underline font-semibold text-sm">Przejdź do nauki i oznacz gwiazdką</button>
+                    </div>
+                `;
+                return;
+            }
+
+            list.innerHTML = questionBank.filter(q => stats.stars.includes(q.id)).map(q => {
+                return `
+                    <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-slate-400">Pytanie ${q.id}</span>
+                            <div class="flex items-center space-x-2">
+                                <button onclick="toggleStar(${q.id})" class="text-amber-500 hover:text-slate-400 transition-colors">
+                                    <svg class="w-5 h-5 fill-current" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                                    </svg>
+                                </button>
+                                <button onclick="studyNow(${q.id})" class="text-xs bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 px-2.5 py-1 rounded-lg transition-colors font-semibold">Ucz się teraz</button>
+                            </div>
+                        </div>
+                        <p class="font-bold text-base leading-snug">${escapeHtml(q.q)}</p>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Helper string escaper for sanitizing inputs and rendering beautifully
+        function escapeHtml(text) {
+            if (!text) return '';
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+    </script>
+</body>
+</html>
