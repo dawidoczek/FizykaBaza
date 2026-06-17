@@ -469,6 +469,7 @@
         }
 
         function isMultiChoiceQuestion(q) {
+            if (q.type === 'open') return false;
             return q.type === 'multi' || q.type === 'multiple' || getCorrectAnswers(q).length > 1;
         }
 
